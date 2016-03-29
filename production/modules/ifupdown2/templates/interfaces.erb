@@ -17,7 +17,7 @@ iface <%=name%>
 
 
 <% (@intvars['networks'] or []).each do |name, network| -%>
-<% network['ports'].each do |name2, port|
+<% network['ports'].each do |name2, port| -%>
 auto <%= name2 %>
 iface <%= name2 %>
 
