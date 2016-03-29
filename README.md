@@ -44,13 +44,7 @@ window.
     dpkg -i puppetlabs-release-pc1_0.9.4-1cumulus_all.deb
     apt-get update
     apt-get install puppet-agent -qy
-
-Edit the file `/etc/puppetlabs/puppet/puppet.conf` and add the line
-
-    server = oob-mgmt-server.lab.local
-
-Run
-
+    echo 'server = oob-mgmt-server.lab.local' >> /etc/puppetlabs/puppet/puppet.conf
     /opt/puppetlabs/bin/puppet agent --test
 
 This will create a certificate on the server that needs to be signed.
