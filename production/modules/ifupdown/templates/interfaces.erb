@@ -12,8 +12,8 @@ iface eth0 inet dhcp
 <% @intvars.each do |name, iface| -%>
 auto <%= name %>
 iface <%= name %> inet static
-    address  <%= iface.ip %>
-    netmask <%= iface.mask %>
-    up ip route add 10.0.0.0/8 via <%= iface.gateway %>
-    up ip route add 172.16.0.0/16 via <%= iface.gateway %>
+    address  <%= iface['ip'] %>
+    netmask <%= iface['mask'] %>
+    up ip route add 10.0.0.0/8 via <%= iface['gateway'] %>
+    up ip route add 172.16.0.0/16 via <%= iface['gateway'] %>
 <% end %>
