@@ -1,0 +1,81 @@
+# networking
+networks:
+    "172.16.1.0/24":
+        source: "leaf01"
+    "172.16.2.0/24":
+        source: "leaf02"
+interfaces:
+    leaf01:
+        loopback: "10.0.0.11"
+        asn: 65011
+        leaf: true
+        networks:
+            br0:
+                ip: "172.16.1.1/24"
+                ports: ["swp1"]
+        neighbors:
+            swp51:
+                ip: "10.1.0.1/31"
+                peer: "10.1.0.0"
+            swp52:
+                ip: "10.1.0.3/31"
+                peer: "10.1.0.2"
+    leaf02:
+        loopback: "10.0.0.12"
+        asn: 65012
+        leaf: true
+        networks:
+            br0:
+                ip: "172.16.2.1/24"
+                ports: ["swp2"]
+        neighbors:
+            swp51:
+                ip: "10.1.0.5/31"
+                peer: "10.1.0.4"
+            swp52:
+                ip: "10.1.0.7/31"
+                peer: "10.1.0.6"
+    spine01:
+        loopback: "10.0.0.21"
+        asn: 65020
+        leaf: false
+        neighbors:
+            swp1:
+                ip: "10.1.0.0/31"
+                peer: "10.1.0.1"
+            swp2:
+                ip: "10.1.0.4/31"
+                peer: "10.1.0.5"
+            swp3:
+                ip: "10.1.0.8/31"
+                peer: "10.1.0.9"
+            swp4:
+                ip: "10.1.0.12/31"
+                peer: "10.1.0.13"
+    spine02:
+        loopback: "10.0.0.22"
+        asn: 65020
+        leaf: false
+        neighbors:
+            swp1:
+                ip: "10.1.0.2/31"
+                peer: "10.1.0.3"
+            swp2:
+                ip: "10.1.0.6/31"
+                peer: "10.1.0.7"
+            swp3:
+                ip: "10.1.0.10/31"
+                peer: "10.1.0.11"
+            swp4:
+                ip: "10.1.0.14/31"
+                peer: "10.1.0.15"
+    server01:
+        eth1:
+            ip: "172.16.1.101"
+            mask: "255.255.255.0"
+            gateway: "172.16.1.1"
+    server02:
+        eth2:
+            ip: "172.16.2.101"
+            mask: "255.255.255.0"
+            gateway: "172.16.2.1"
