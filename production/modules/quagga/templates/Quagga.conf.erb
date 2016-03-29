@@ -24,16 +24,16 @@ router bgp <%= @intvars['asn'] %>
 !
 ip prefix-list dc-fabric-in seq 10 permit 0.0.0.0/0
 ip prefix-list dc-fabric-in seq 20 permit 10.0.0.0/24 le 32
-<% @networks.each do |name, network| -%>
-<% if network['source'] != @hostname -%>
-ip prefix-list dc-fabric-in seq {{ loop.index*10 + 20 }} permit {{ network }}
+<% @networks.each_with_index do |network, index| -%>
+<% if network[1]['source'] != @hostname -%>
+ip prefix-list dc-fabric-in seq <%= index*10 + 20 %> permit <%= network[0] %>
 <% end -%>
 <% end -%>
 ip prefix-list dc-fabric-in seq 500 deny any
 ip prefix-list dc-fabric-out seq 10 permit 10.0.0.0/24 le 32
-<% @networks.each do |name, network| -%>
-<% if not @intvars['leaf'] or network['source'] == @hostname -%>
-ip prefix-list dc-fabric-out seq {{ loop.index*10 + 20 }} permit {{ network }}
+<% @networks.each_with_index do |network, index| -%>
+<% if not @intvars['leaf'] or network[1]['source'] == @hostname -%>
+ip prefix-list dc-fabric-out seq <%= loop.index*10 + 20 %> permit <%= network[0] %>
 <% end -%>
 <% end -%>
 ip prefix-list dc-fabric-out seq 500 deny any
