@@ -1,7 +1,7 @@
 class ifupdown {
 
-    $interfaces_hiera = hiera('interfaces')
-    $intvars = $interfaces_hiera[$hostname]
+    $intvars = hiera('interfaces')[$hostname]
+    #$intvars = $interfaces_hiera[$hostname]
     $networks = hiera('networks')
 
     file { '/etc/network/interfaces_test':
