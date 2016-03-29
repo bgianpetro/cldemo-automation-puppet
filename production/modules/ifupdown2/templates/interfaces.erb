@@ -17,13 +17,13 @@ iface <%=name%>
 
 
 <% (@intvars['networks'] or []).each do |name, network| -%>
-<% network['ports'].each do |name2, port| -%>
-auto <%= name2 %>
-iface <%= name2 %>
+<% network['ports'].each do |port| -%>
+auto <%= port %>
+iface <%= port %>
 
 <% end %>
 auto <%= name %>
 iface <%= name %>
-    bridge-ports <%= network['ports'].keys().join(' ') %>
+    bridge-ports <%= network['ports'].join(' ') %>
     address <%= network['ip'] %>
 <% end %>
