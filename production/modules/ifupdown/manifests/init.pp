@@ -1,9 +1,7 @@
 class ifupdown {
 
     $intvars = hiera('interfaces')[$hostname]
-    #$intvars = $interfaces_hiera[$hostname]
     $networks = hiera('networks')
-
     file { '/etc/network/interfaces_test':
         owner   => root,
         group   => root,
