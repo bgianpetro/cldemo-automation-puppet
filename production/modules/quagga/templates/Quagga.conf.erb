@@ -1,7 +1,7 @@
 !
-router bgp <%= @intvars['asn']>
-    bgp router-id <%= @intvars['loopback']>
-    network <%= @intvars['loopback']>/32
+router bgp <%= @intvars['asn'] %>
+    bgp router-id <%= @intvars['loopback'] %>
+    network <%= @intvars['loopback'] %>/32
 <% @networks.each do |name, network| -%>
 <% if network['source'] == @hostname -%>
     network <%= name %>
