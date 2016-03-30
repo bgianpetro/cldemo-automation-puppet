@@ -8,7 +8,7 @@ Quickstart: Run the demo
 
     git clone https://github.com/cumulusnetworks/cldemo-vagrant
     cd cldemo-vagrant
-    vagrant up
+    vagrant up oob-mgmt-server oob-mgmt-switch leaf01 leaf02 spine01 spine02 server01 server02
     vagrant ssh oob-mgmt-server
     sudo su - cumulus
     git clone https://github.com/cumulusnetworks/cldemo-automation-puppet
