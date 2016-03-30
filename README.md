@@ -2,6 +2,35 @@
 
 
 
+Running the Demo
+----------------
+(This assumes you are running Ansible 1.9.4 and Vagrant 1.8.4 on your host.)
+
+    git clone https://github.com/cumulusnetworks/cldemo-vagrant
+    cd cldemo-vagrant
+    vagrant up
+    vagrant ssh oob-mgmt-server
+    sudo su - cumulus
+    git clone https://github.com/cumulusnetworks/cldemo-automation-puppet
+    cd cldemo-automation-puppet
+    sudo su
+    wget https://apt.puppetlabs.com/puppetlabs-release-pc1-trusty.deb
+    dpkg -i puppetlabs-release-pc1-trusty.deb
+    apt-get update
+    apt-get install puppetserver -qy
+    rm -rf /etc/puppetlabs/code/environments/production
+    ln -s  /home/cumulus/cldemo-automation-puppet/production /etc/puppetlabs/code/environments/production
+    sed -i 's/-Xms2g/-Xms512m/g' /etc/default/puppetserver
+    sed -i 's/-Xmx2g/-Xms512m/g' /etc/default/puppetserver
+    service puppetserver restart
+    exit
+    python install-puppet-agents.py leaf01,leaf02,spine01,spine02,server01,server02
+    ssh server01
+    wget 172.16.2.101
+    cat index.html
+
+
+
 
 Configuring the puppetmaster
 ----------------------------
@@ -27,10 +56,6 @@ and configure the JVM to use 512 MB of RAM.
 Start the puppetmaster.
 
     service puppetserver restart
-
-
-
-
 
 
 Configuring the puppet agents
