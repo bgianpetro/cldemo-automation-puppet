@@ -9,7 +9,7 @@ iface eth0 inet dhcp
     post-up ip route add default via 192.168.0.1
 
 
-<% @intvars['ifaces'].each do |name, iface| -%>
+<% @intvars['neighbors'].each do |name, iface| -%>
 auto <%= name %>
 iface <%= name %> inet static
     address  <%= iface['ip'] %>
