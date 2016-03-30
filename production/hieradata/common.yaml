@@ -8,7 +8,6 @@ interfaces:
     leaf01:
         loopback: "10.0.0.11"
         asn: 65011
-        advertises_network: true
         networks:
             br0:
                 ip: "172.16.1.1/24"
@@ -23,7 +22,6 @@ interfaces:
     leaf02:
         loopback: "10.0.0.12"
         asn: 65012
-        advertises_network: true
         networks:
             br0:
                 ip: "172.16.2.1/24"
@@ -38,7 +36,6 @@ interfaces:
     spine01:
         loopback: "10.0.0.21"
         asn: 65020
-        advertises_network: false
         neighbors:
             swp1:
                 ip: "10.1.0.0/31"
@@ -55,7 +52,6 @@ interfaces:
     spine02:
         loopback: "10.0.0.22"
         asn: 65020
-        advertises_network: false
         neighbors:
             swp1:
                 ip: "10.1.0.2/31"
