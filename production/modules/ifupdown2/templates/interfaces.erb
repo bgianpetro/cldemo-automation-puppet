@@ -11,7 +11,7 @@ iface eth0 inet dhcp
 <% @intvars['neighbors'].each do |name, iface| -%>
 auto <%=name%>
 iface <%=name%>
-    address <%=iface['ip']%>
+    address <%=@intvars['loopback']%>/32
 
 <% end %>
 

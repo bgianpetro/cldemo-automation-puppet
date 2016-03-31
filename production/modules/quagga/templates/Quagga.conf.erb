@@ -1,4 +1,10 @@
 !
+<% @intvars['neighbors'].each do |neighbor| -%>
+interface <%= neighbor %>
+ no ipv6 nd suppress-ra
+ ipv6 nd ra-interval 3
+!
+<% end -%>
 router bgp <%= @intvars['asn'] %>
     bgp router-id <%= @intvars['loopback'] %>
     network <%= @intvars['loopback'] %>/32
@@ -17,9 +23,9 @@ router bgp <%= @intvars['asn'] %>
     neighbor fabric timers connect 3
     neighbor fabric prefix-list dc-fabric-in in
     neighbor fabric prefix-list dc-fabric-out out
-<% @intvars['neighbors'].each do |name, neighbor| -%>
-    neighbor <%= neighbor['peer'] %> peer-group fabric
-    neighbor <%= neighbor['peer'] %> remote-as external
+<% @intvars['neighbors'].each do |neighbor| -%>
+    neighbor <%= neighbor %> interface
+    neighbor <%= neighbor %> peer-group fabric
 <% end -%>
 !
 ip prefix-list dc-fabric-in seq 10 permit 0.0.0.0/0
