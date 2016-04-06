@@ -68,7 +68,7 @@ Puppet uses a client-server model where a Puppet agent runs on each device in th
 Puppet configuration is broken up into environments, which can be found in `/etc/puppetlabs/code/environments`. Puppet environments are usually used to separate production from testing code. Each puppet agent is assigned to an environment (default `production`) and pulls the appropriate code from the server. This demo provides a `production` environment that can be dropped or symlinked directly into that folder. Assuming you cloned the repository into the cumulus user's home directory:
 
     sudo rm -rf /etc/puppetlabs/code/environments/production
-    sudo ln -s  /home/cumulus/cldemo-automation-puppet/production /etc/puppetlabs/code/environments/production
+    sudo ln -s  /home/cumulus/cldemo-automation-puppet /etc/puppetlabs/code/environments/production
 
 If running this on a virtual machine, open the file `/etc/default/puppetserver` and configure the JVM to use 512 MB of RAM.
 
