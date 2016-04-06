@@ -22,7 +22,7 @@ Quickstart: Run the demo
     apt-get update
     apt-get install puppetserver -qy
     rm -rf /etc/puppetlabs/code/environments/production
-    ln -s  /home/cumulus/cldemo-automation-puppet/production /etc/puppetlabs/code/environments/production
+    ln -s  /home/cumulus/cldemo-automation-puppet/ /etc/puppetlabs/code/environments/production
     sed -i 's/-Xms2g/-Xms512m/g' /etc/default/puppetserver
     sed -i 's/-Xmx2g/-Xms512m/g' /etc/default/puppetserver
     service puppetserver restart
