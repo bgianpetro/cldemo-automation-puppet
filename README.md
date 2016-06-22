@@ -24,7 +24,7 @@ Quickstart: Run the demo
     rm -rf /etc/puppetlabs/code/environments/production
     ln -s  /home/cumulus/cldemo-automation-puppet/ /etc/puppetlabs/code/environments/production
     sed -i 's/-Xms2g/-Xms512m/g' /etc/default/puppetserver
-    sed -i 's/-Xmx2g/-Xms512m/g' /etc/default/puppetserver
+    sed -i 's/-Xmx2g/-Xmx512m/g' /etc/default/puppetserver
     service puppetserver restart
     exit
     python install-puppet-agents.py leaf01,leaf02,spine01,spine02,server01,server02
