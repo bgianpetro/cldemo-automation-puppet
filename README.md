@@ -17,8 +17,8 @@ Quickstart: Run the demo
     git clone https://github.com/cumulusnetworks/cldemo-automation-puppet
     cd cldemo-automation-puppet
     sudo su
-    wget https://apt.puppetlabs.com/puppetlabs-release-pc1-trusty.deb
-    dpkg -i puppetlabs-release-pc1-trusty.deb
+    wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
+    dpkg -i puppetlabs-release-pc1-xenial.deb
     apt-get update
     apt-get install puppetserver -qy
     rm -rf /etc/puppetlabs/code/environments/production
@@ -60,8 +60,8 @@ Setting up the Infrastructure
 -----------------------------
 Puppet uses a client-server model where a Puppet agent runs on each device in the network and periodically polls the Puppetserver daemon to check for updated configuration. To install the Puppetserver: 
 
-    wget https://apt.puppetlabs.com/puppetlabs-release-pc1-trusty.deb
-    sudo dpkg -i puppetlabs-release-pc1-trusty.deb
+    wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
+    sudo dpkg -i puppetlabs-release-pc1-xenial.deb
     sudo apt-get update
     sudo apt-get install puppetserver -qy
 
