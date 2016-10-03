@@ -16,12 +16,23 @@ def go(host):
     expect.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     expect.connect(host, username="cumulus", password="CumulusLinux!")
 
-    for line in ['sudo wget https://apt.puppetlabs.com/pool/cumulus/PC1/p/puppetlabs-release-pc1/puppetlabs-release-pc1_1.0.0-2cumulus_all.deb',
-                 'sudo dpkg -i puppetlabs-release-pc1_1.0.0-2cumulus_all.deb',
-                 'sudo apt-get update',
-                 'sudo apt-get install puppet-agent -qy',
-                 "sudo echo 'server = oob-mgmt-server.lab.local' | sudo tee /etc/puppetlabs/puppet/puppet.conf -a",
-                 'sudo /opt/puppetlabs/bin/puppet agent --test']:
+    
+    if "server" in host:
+        commands =  ['sudo wget https://apt.puppetlabs.com/pool/xenial/PC1/p/puppetlabs-release-pc1/puppetlabs-release-pc1_1.1.0-2xenial_all.deb',
+                     'sudo dpkg -i puppetlabs-release-pc1_1.1.0-2xenial_all.deb',
+                     'sudo apt-get update',
+                     'sudo apt-get install puppet-agent -qy',
+                     "sudo echo 'server = oob-mgmt-server.lab.local' | sudo tee /etc/puppetlabs/puppet/puppet.conf -a",
+                     'sudo /opt/puppetlabs/bin/puppet agent --test']:     
+    elif "leaf" in host or "spine" in host:
+        commands =  ['sudo wget https://apt.puppetlabs.com/pool/jessie/PC1/p/puppetlabs-release-pc1/puppetlabs-release-pc1_1.1.0-2jessie_all.deb',
+                     'sudo dpkg -i puppetlabs-release-pc1_1.1.0-2jessie_all.deb',
+                     'sudo apt-get update',
+                     'sudo apt-get install puppet-agent -qy',
+                     "sudo echo 'server = oob-mgmt-server.lab.local' | sudo tee /etc/puppetlabs/puppet/puppet.conf -a",
+                     'sudo /opt/puppetlabs/bin/puppet agent --test']:
+    
+    for line in commands:
         stdin, stdout, stderr = expect.exec_command(line, get_pty=True)
         stdout.channel.recv_exit_status()
         print("%s: %s"%(host, line))
