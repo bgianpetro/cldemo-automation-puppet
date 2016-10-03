@@ -18,15 +18,15 @@ def go(host):
 
     
     if "server" in host:
-        commands =  ['sudo wget https://apt.puppetlabs.com/pool/xenial/PC1/p/puppetlabs-release-pc1/puppetlabs-release-pc1_1.1.0-2xenial_all.deb',
-                     'sudo dpkg -i puppetlabs-release-pc1_1.1.0-2xenial_all.deb',
+        commands =  ['sudo wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb',
+                     'sudo dpkg -i puppetlabs-release-pc1-xenial.deb',
                      'sudo apt-get update',
                      'sudo apt-get install puppet-agent -qy',
                      "sudo echo 'server = oob-mgmt-server.lab.local' | sudo tee /etc/puppetlabs/puppet/puppet.conf -a",
                      'sudo /opt/puppetlabs/bin/puppet agent --test']:     
     elif "leaf" in host or "spine" in host:
-        commands =  ['sudo wget https://apt.puppetlabs.com/pool/jessie/PC1/p/puppetlabs-release-pc1/puppetlabs-release-pc1_1.1.0-2jessie_all.deb',
-                     'sudo dpkg -i puppetlabs-release-pc1_1.1.0-2jessie_all.deb',
+        commands =  ['sudo wget https://apt.puppetlabs.com/puppetlabs-release-pc1-jessie.deb',
+                     'sudo dpkg -i puppetlabs-release-pc1-jessie.deb',
                      'sudo apt-get update',
                      'sudo apt-get install puppet-agent -qy',
                      "sudo echo 'server = oob-mgmt-server.lab.local' | sudo tee /etc/puppetlabs/puppet/puppet.conf -a",
