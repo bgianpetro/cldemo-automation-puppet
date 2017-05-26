@@ -14,7 +14,7 @@ Before running this demo, install [VirtualBox](https://www.virtualbox.org/wiki/D
     vagrant up oob-mgmt-server oob-mgmt-switch leaf01 leaf02 spine01 spine02 server01 server02
     vagrant ssh oob-mgmt-server
     sudo su - cumulus
-    git clone https://github.com/cumulusnetworks/cldemo-automation-puppet
+    git clone https://github.com/cumulusnetworks/cldemo-basic-evpn
     cd cldemo-automation-puppet
     sudo su
     wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
