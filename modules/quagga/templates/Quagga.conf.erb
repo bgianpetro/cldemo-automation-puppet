@@ -8,11 +8,6 @@ interface <%= neighbor %>
 router bgp <%= @intvars['asn'] %>
     bgp router-id <%= @intvars['loopback'] %>
     network <%= @intvars['loopback'] %>/32
-<% @networks.each do |name, network| -%>
-<% if network['source'] == @hostname -%>
-    network <%= name %>
-<% end -%>
-<% end -%>
     maximum-paths 64
     bgp bestpath as-path multipath-relax
     bgp bestpath compare-routerid
@@ -32,17 +27,7 @@ router bgp <%= @intvars['asn'] %>
 !
 ip prefix-list dc-fabric-in seq 10 permit 0.0.0.0/0
 ip prefix-list dc-fabric-in seq 20 permit 10.0.0.0/24 le 32
-<% @networks.each_with_index do |network, index| -%>
-<% if network[1]['source'] != @hostname -%>
-ip prefix-list dc-fabric-in seq <%= index*10 + 100 %> permit <%= network[0] %>
-<% end -%>
-<% end -%>
 ip prefix-list dc-fabric-in seq 500 deny any
 ip prefix-list dc-fabric-out seq 10 permit 10.0.0.0/24 le 32
-<% @networks.each_with_index do |network, index| -%>
-<% if not @intvars['advertises_network'] or network[1]['source'] == @hostname -%>
-ip prefix-list dc-fabric-out seq <%= index*10 + 100 %> permit <%= network[0] %>
-<% end -%>
-<% end -%>
 ip prefix-list dc-fabric-out seq 500 deny any
 !

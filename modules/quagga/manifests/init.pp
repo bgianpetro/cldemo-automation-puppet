@@ -13,7 +13,6 @@ class quagga {
     }
 
     $intvars = hiera('interfaces')[$hostname]
-    $networks = hiera('networks')
     file { '/etc/quagga/Quagga.conf':
         owner   => root,
         group   => root,
