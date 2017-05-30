@@ -15,7 +15,7 @@ Before running this demo, install [VirtualBox](https://www.virtualbox.org/wiki/D
     vagrant ssh oob-mgmt-server
     sudo su - cumulus
     git clone https://github.com/bgianpetro/cldemo-basic-evpn
-    cd cldemo-automation-puppet
+    cd cldemo-basic-evpn
     sudo su
     wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
     dpkg -i puppetlabs-release-pc1-xenial.deb
