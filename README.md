@@ -22,7 +22,7 @@ Before running this demo, install [VirtualBox](https://www.virtualbox.org/wiki/D
     apt-get update
     apt-get install puppetserver -qy
     rm -rf /etc/puppetlabs/code/environments/production
-    ln -s  /home/cumulus/cldemo-automation-puppet/ /etc/puppetlabs/code/environments/production
+    ln -s  /home/cumulus/cldemo-basic-evpn/ /etc/puppetlabs/code/environments/production
     sed -i 's/-Xms2g/-Xms512m/g' /etc/default/puppetserver
     sed -i 's/-Xmx2g/-Xmx512m/g' /etc/default/puppetserver
     service puppetserver restart
