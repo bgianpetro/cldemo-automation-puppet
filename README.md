@@ -28,9 +28,7 @@ Before running this demo, install [VirtualBox](https://www.virtualbox.org/wiki/D
     service puppetserver restart
     exit
     python install-puppet-agents.py leaf01,leaf02,spine01,spine02,server01,server02
-    ssh server01
-    wget 172.16.2.101
-    cat index.html
+
 
 Topology Diagram
 ----------------
