@@ -15,3 +15,20 @@ iface <%=name%>
 
 <% end %>
 
+<% (@intvars['bridges'] or []).each do |name, bridge| -%>
+auto <%= name %>
+iface <%= name %>
+    bridge-ports <%= bridge['ports'].join(' ') %>
+    bridge-vlan-aware yes
+    bridge-vids <%= bridge['bridge-vids'].join(' ') %>
+    bridge-pvid 1
+<% end %>
+
+<% (@intvars['vxlans'] or []).each do |name, vxlan| -%>
+auto <%= name %>
+iface <%= name %>
+    vxlan-id <%=vxlan['vxlan-id']%>
+    vxlan-local-tunnelip <%=@intvars['loopback']%>
+    bridge-access <%=vxlan['bridge-access']%>
+    bridge-learning off
+<% end %>

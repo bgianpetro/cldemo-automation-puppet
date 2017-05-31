@@ -3,14 +3,28 @@ interfaces:
     leaf01:
         loopback: "10.0.0.11"
         asn: 65011
-        networks:
+        bridges:
+            br0:
+                ports: ["swp1", "vxlan10001"]
+                bridge-vids: ["1"]
+        vxlans:
+            vxlan10001:
+                vxlan-id: 10001
+                bridge-access: 1
         neighbors:
             swp51:
             swp52:
     leaf02:
         loopback: "10.0.0.12"
         asn: 65012
-        networks:
+        bridges:
+            br0:
+                ports: ["swp2", "vxlan10001"]
+                bridge-vids: ["1"]
+        vxlans:
+            vxlan10001:
+                vxlan-id: 10001
+                bridge-access: 1
         neighbors:
             swp51:
             swp52:

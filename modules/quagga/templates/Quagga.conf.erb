@@ -7,7 +7,6 @@ interface <%= neighbor %>
 <% end -%>
 router bgp <%= @intvars['asn'] %>
     bgp router-id <%= @intvars['loopback'] %>
-    network <%= @intvars['loopback'] %>/32
     maximum-paths 64
     bgp bestpath as-path multipath-relax
     bgp bestpath compare-routerid
@@ -18,12 +17,26 @@ router bgp <%= @intvars['asn'] %>
     neighbor fabric capability extended-nexthop
     neighbor fabric timers connect 3
     neighbor fabric remote-as external
-    neighbor fabric prefix-list dc-fabric-in in
-    neighbor fabric prefix-list dc-fabric-out out
 <% @intvars['neighbors'].each do |neighbor, data| -%>
     neighbor <%= neighbor %> interface
     neighbor <%= neighbor %> peer-group fabric
 <% end -%>
+
+    address-family ipv4 unicast
+     network <%= @intvars['loopback'] %>/32
+     neighbor fabric prefix-list dc-fabric-in in
+     neighbor fabric prefix-list dc-fabric-out out
+    exit-address-family
+!
+    address-family ipv6 unicast
+     neighbor fabric activate
+    exit-address-family
+!
+    address-family evpn
+     neighbor fabric activate
+     advertise-all-vni
+    exit-address-family
+
 !
 ip prefix-list dc-fabric-in seq 10 permit 0.0.0.0/0
 ip prefix-list dc-fabric-in seq 20 permit 10.0.0.0/24 le 32
